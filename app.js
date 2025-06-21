@@ -37,6 +37,23 @@ boxes.forEach((box)=>{
 });
 });
 
+const checkWinner = () =>{
+    for (let pattern of winnPatterns){
+        let pos1Val = boxes[pattern[0]].innerText;
+        let pos2Val = boxes[pattern[1]].innerText;
+        let pos3Val = boxes[pattern[2]].innerText;
+        if(pos1Val!=""&&pos2Val!=""&&pos3Val!=""){
+            if(pos1Val===pos2Val&&pos2Val===pos3Val){
+                console.log("WINNER");
+                showWinner(pos1Val);
+                disableBoxes();
+
+            }
+        }
+
+    }
+};
+
 const showWinner = (winner)=>{
     msg.innerText=`Congratulations , Winner : ${winner}`;
     
@@ -56,23 +73,6 @@ const disableBoxes = () =>{
         box.disabled = true;
     }
 }
-
-const checkWinner = () =>{
-    for (let pattern of winnPatterns){
-        let pos1Val = boxes[pattern[0]].innerText;
-        let pos2Val = boxes[pattern[1]].innerText;
-        let pos3Val = boxes[pattern[2]].innerText;
-        if(pos1Val!=""&&pos2Val!=""&&pos3Val!=""){
-            if(pos1Val===pos2Val&&pos2Val===pos3Val){
-                console.log("WINNER");
-                showWinner(pos1Val);
-                disableBoxes();
-
-            }
-        }
-
-    }
-};
 
 newGameBtn.addEventListener("click",resetGame);
 resetBtn.addEventListener("click",resetGame);
